@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Lupus Eye</title>
+    <meta name="description" content="Login to the Lupus Eye security system" />
+    <link href="./src/index.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  </head>
+
+  <body class="gradient-bg grid-pattern min-h-screen flex flex-col">
+    <div id="app" class="flex flex-col flex-1 justify-center items-center p-8">
+      <div class="max-w-md w-full mx-auto">
+        <a href="index.html" class="inline-block mb-8">
+          <div class="flex items-center justify-center gap-3">
+            <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="45" stroke="url(#eye-gradient)" stroke-width="2" />
+              <circle cx="50" cy="50" r="20" fill="url(#eye-gradient)" />
+              <ellipse cx="50" cy="50" rx="35" ry="25" stroke="url(#eye-gradient)" stroke-width="1.5" stroke-dasharray="5 3" />
+              <defs>
+                <linearGradient id="eye-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#38bdf8" />
+                  <stop offset="100%" stop-color="#10b981" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="font-orbitron text-xl font-bold glow-text">Lupus Eye</span>
+          </div>
+        </a>
+
+        <div class="cyber-card p-8 animate-pulse-glow">
+          <div class="text-center mb-6">
+            <h1 id="login-title" class="font-orbitron text-2xl mb-2">Login</h1>
+            <div class="h-px w-full bg-gradient-to-r from-transparent via-sky-500/50 to-transparent"></div>
+          </div>
+          
+          <form id="login-form" class="space-y-4">
+            <div class="space-y-2">
+              <label for="email" class="text-sm font-fira text-gray-300 block">Email Address</label>
+              <input id="email" type="email" class="cyber-input w-full" placeholder="your.email@example.com" required />
+            </div>
+            
+            <div class="space-y-2">
+              <label for="password" class="text-sm font-fira text-gray-300 block">Password</label>
+              <input id="password" type="password" class="cyber-input w-full" placeholder="••••••••" required />
+            </div>
+            
+            <div class="flex items-center justify-between text-sm">
+              <div class="flex items-center">
+                <input id="remember" type="checkbox" class="bg-slate-800 border border-slate-600 rounded text-sky-500 focus:ring-2 focus:ring-sky-500/40" />
+                <label for="remember" class="ml-2 text-gray-300">Remember me</label>
+              </div>
+              <a href="#" class="text-sky-400 hover:text-sky-300">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="cyber-button w-full flex justify-center items-center gap-2 mt-6">
+              <span id="login-text">Login</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </form>
+        </div>
+        
+        <div class="text-center mt-4">
+          <a href="select-role.html" class="text-gray-400 hover:text-gray-300 text-sm flex justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Change Role
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Check if role is selected, if not redirect to role selection
+        const role = localStorage.getItem('lupusEyeRole');
+        if (!role) {
+          window.location.href = 'select-role.html';
+          return;
+        }
+        
+        // Update the login title based on the selected role
+        const loginTitle = document.getElementById('login-title');
+        const loginText = document.getElementById('login-text');
+        const roleName = role === 'bank' ? 'Bank Security' : 'Police Official';
+        loginTitle.textContent = `Login as ${roleName}`;
+        loginText.textContent = `Login as ${roleName}`;
+        
+        // Update button color based on role
+        if (role === 'police') {
+          document.querySelector('.cyber-button').classList.add('text-emerald-400');
+          document.querySelector('.cyber-button').classList.add('border-emerald-500/50');
+          document.querySelector('.cyber-button').classList.add('hover:border-emerald-400');
+          document.querySelector('.cyber-button').classList.add('hover:text-emerald-300');
+          document.querySelector('.cyber-button').classList.add('hover:shadow-emerald-500/30');
+        }
+        
+        // Form submission handler
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          // Store logged in state in localStorage
+          localStorage.setItem('lupusEyeLoggedIn', 'true');
+          
+          // Redirect to dashboard
+          window.location.href = 'dashboard.html';
+        });
+      });
+    </script>
+  </body>
+</html>

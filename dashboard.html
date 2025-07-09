@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Lupus Eye</title>
+    <meta name="description" content="Lupus Eye security system dashboard" />
+    <link href="./src/index.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  </head>
+
+  <body class="bg-slate-900 grid-pattern min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="fixed h-full w-64 bg-slate-950 border-r border-slate-800 z-50 transition-transform duration-300" id="sidebar">
+      <div class="p-5">
+        <div class="flex items-center gap-3 mb-8">
+          <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" stroke="url(#eye-gradient)" stroke-width="2" />
+            <circle cx="50" cy="50" r="20" fill="url(#eye-gradient)" />
+            <ellipse cx="50" cy="50" rx="35" ry="25" stroke="url(#eye-gradient)" stroke-width="1.5" stroke-dasharray="5 3" />
+            <defs>
+              <linearGradient id="eye-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8" />
+                <stop offset="100%" stop-color="#10b981" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="font-orbitron text-xl font-bold glow-text">Lupus Eye</span>
+        </div>
+
+        <nav class="space-y-1">
+          <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-md bg-slate-800/50 text-sky-400 border-l-2 border-sky-500 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span>Dashboard</span>
+          </a>
+          
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-400 hover:bg-slate-800/30 hover:text-gray-200 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span>Threat Logs</span>
+          </a>
+          
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-400 hover:bg-slate-800/30 hover:text-gray-200 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <span>Notifications</span>
+            <span class="ml-auto bg-red-500/80 text-xs px-2 py-0.5 rounded-full">3</span>
+          </a>
+          
+          <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-400 hover:bg-slate-800/30 hover:text-gray-200 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>Settings</span>
+          </a>
+        </nav>
+      </div>
+      
+      <div class="absolute bottom-0 w-full p-5 border-t border-slate-800">
+        <div id="user-role" class="mb-4 text-sm font-fira text-gray-400"></div>
+        <button id="logout-btn" class="flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Mobile sidebar toggle -->
+    <button id="sidebar-toggle" class="fixed z-50 bottom-4 right-4 md:hidden bg-slate-800 rounded-full p-3 shadow-lg flex items-center justify-center text-sky-400 border border-sky-500/50">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+    
+    <!-- Main Content -->
+    <main class="flex-1 ml-0 md:ml-64 transition-all duration-300">
+      <!-- Top Navigation -->
+      <header class="bg-slate-950 border-b border-slate-800 p-4 sticky top-0 z-10">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <button id="mobile-menu-btn" class="md:hidden text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <h1 class="text-xl font-orbitron font-semibold hidden md:block">Security Dashboard</h1>
+          </div>
+          
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <button class="text-gray-400 hover:text-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+              </button>
+              <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
+            </div>
+            
+            <div id="current-time" class="text-sm text-gray-300 hidden md:block font-fira"></div>
+          </div>
+        </div>
+      </header>
+      
+      <div class="p-6">
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div class="cyber-card animate-pulse-glow">
+            <div class="flex justify-between items-center">
+              <h3 class="text-gray-400 font-fira text-sm">Total ATMs</h3>
+              <span class="text-sky-400 bg-sky-400/10 p-1 rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </span>
+            </div>
+            <div class="mt-2">
+              <div class="text-2xl font-orbitron font-bold text-white">247</div>
+              <p class="text-xs text-green-400">+12% from last month</p>
+            </div>
+          </div>
+          
+          <div class="cyber-card">
+            <div class="flex justify-between items-center">
+              <h3 class="text-gray-400 font-fira text-sm">Active ATMs</h3>
+              <span class="text-emerald-400 bg-emerald-400/10 p-1 rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </span>
+            </div>
+            <div class="mt-2">
+              <div class="text-2xl font-orbitron font-bold text-white">235</div>
+              <p class="text-xs text-green-400">95% availability</p>
+            </div>
+          </div>
+          
+          <div class="cyber-card">
+            <div class="flex justify-between items-center">
+              <h3 class="text-gray-400 font-fira text-sm">Offline ATMs</h3>
+              <span class="text-amber-400 bg-amber-400/10 p-1 rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </span>
+            </div>
+            <div class="mt-2">
+              <div class="text-2xl font-orbitron font-bold text-white">12</div>
+              <p class="text-xs text-amber-400">5% of network</p>
+            </div>
+          </div>
+          
+          <div class="cyber-card">
+            <div class="flex justify-between items-center">
+              <h3 class="text-gray-400 font-fira text-sm">Current Threats</h3>
+              <span class="text-red-400 bg-red-400/10 p-1 rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </span>
+            </div>
+            <div class="mt-2">
+              <div class="text-2xl font-orbitron font-bold text-white">3</div>
+              <p class="text-xs text-red-400">Urgent attention required</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Alert Feed Section -->
+        <div class="mb-8">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+            <h2 class="text-xl font-orbitron font-semibold mb-2 md:mb-0">Live Alert Feed</h2>
+            
+            <div class="flex items-center">
+              <select id="alert-filter" class="cyber-input text-sm mr-2">
+                <option value="all">All Alerts</option>
+                <option value="verified">Verified Only</option>
+                <option value="unacknowledged">Unacknowledged</option>
+              </select>
+              
+              <button class="cyber-button text-sm py-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Refresh
+              </button>
+            </div>
+          </div>
+          
+          <div class="cyber-card overflow-x-auto">
+            <table class="min-w-full text-sm">
+              <thead>
+                <tr class="border-b border-slate-700 text-left text-xs font-fira text-gray-400">
+                  <th class="py-3 px-4">ATM ID</th>
+                  <th class="py-3 px-4">Time</th>
+                  <th class="py-3 px-4">Threat Type</th>
+                  <th class="py-3 px-4">Location</th>
+                  <th class="py-3 px-4">Status</th>
+                  <th class="py-3 px-4">Evidence</th>
+                  <th class="py-3 px-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="alerts-table-body">
+                <!-- Table rows will be inserted by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div>
+          <h2 class="text-xl font-orbitron font-semibold mb-6">ATM Network Map</h2>
+          <div class="cyber-card h-96 relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <!-- Mock map placeholder with grid -->
+              <div class="w-full h-full bg-slate-900 grid-pattern" id="map-container">
+                <!-- Map points will be added by JS -->
+              </div>
+              
+              <div class="absolute top-4 right-4 bg-slate-800/70 backdrop-blur-sm rounded-md p-2 text-xs">
+                <div class="flex items-center mb-1">
+                  <span class="h-3 w-3 rounded-full bg-green-500 mr-2"></span>
+                  <span class="text-gray-300">Active ATM</span>
+                </div>
+                <div class="flex items-center mb-1">
+                  <span class="h-3 w-3 rounded-full bg-amber-500 mr-2"></span>
+                  <span class="text-gray-300">Offline ATM</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="h-3 w-3 rounded-full bg-red-500 mr-2"></span>
+                  <span class="text-gray-300">Threat Detected</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Auth check - redirect if not logged in
+        const isLoggedIn = localStorage.getItem('lupusEyeLoggedIn') === 'true';
+        if (!isLoggedIn) {
+          window.location.href = 'login.html';
+          return;
+        }
+        
+        // Get user role
+        const role = localStorage.getItem('lupusEyeRole') || 'bank';
+        const roleName = role === 'bank' ? 'Bank Security Officer' : 'Police Official';
+        
+        // Set user role display
+        document.getElementById('user-role').textContent = `Logged in as: ${roleName}`;
+        
+        // Handle logout
+        document.getElementById('logout-btn').addEventListener('click', () => {
+          localStorage.removeItem('lupusEyeLoggedIn');
+          window.location.href = 'index.html';
+        });
+        
+        // Mobile sidebar toggle
+        const toggleSidebar = () => {
+          const sidebar = document.getElementById('sidebar');
+          const mainContent = document.querySelector('main');
+          
+          sidebar.classList.toggle('-translate-x-full');
+          if (window.innerWidth >= 768) {  // md breakpoint
+            mainContent.classList.toggle('ml-0');
+            mainContent.classList.toggle('ml-64');
+          }
+        };
+        
+        // Only apply initial translation on mobile
+        if (window.innerWidth < 768) {
+          document.getElementById('sidebar').classList.add('-translate-x-full');
+        }
+        
+        document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleSidebar);
+        
+        // Update current time
+        const updateTime = () => {
+          const timeElement = document.getElementById('current-time');
+          const now = new Date();
+          timeElement.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        };
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        // Mock alert data
+        const alertsData = [
+          {
+            atmId: 'ATM-2305',
+            time: '2025-05-09T23:45:12',
+            threatType: 'Suspicious Tool',
+            location: 'Mumbai Central',
+            status: 'High',
+            evidence: 'QmVk2X8dF4ZsJvY...',
+            verified: true,
+            acknowledged: false
+          },
+          {
+            atmId: 'ATM-1845',
+            time: '2025-05-09T22:37:08',
+            threatType: 'Mask Detected',
+            location: 'Delhi Cantt',
+            status: 'Medium',
+            evidence: 'QmRt6Y9pM7ZzQw...',
+            verified: true,
+            acknowledged: true
+          },
+          {
+            atmId: 'ATM-3761',
+            time: '2025-05-09T22:14:45',
+            threatType: 'Break-in Attempt',
+            location: 'Bangalore East',
+            status: 'High',
+            evidence: 'QmTpL8cR3nFw2X...',
+            verified: false,
+            acknowledged: false
+          },
+          {
+            atmId: 'ATM-0948',
+            time: '2025-05-09T21:22:39',
+            threatType: 'Camera Tampering',
+            location: 'Chennai North',
+            status: 'Low',
+            evidence: 'QmZvF7dH3kLp1X...',
+            verified: true,
+            acknowledged: false
+          },
+          {
+            atmId: 'ATM-2117',
+            time: '2025-05-09T20:51:14',
+            threatType: 'Suspicious Loitering',
+            location: 'Kolkata Central',
+            status: 'Medium',
+            evidence: 'QmXr9T2pV5mNbY...',
+            verified: false,
+            acknowledged: true
+          }
+        ];
+        
+        // Render alerts table
+        const renderAlerts = (filter = 'all') => {
+          const tableBody = document.getElementById('alerts-table-body');
+          tableBody.innerHTML = '';
+          
+          let filteredAlerts = [...alertsData];
+          if (filter === 'verified') {
+            filteredAlerts = alertsData.filter(alert => alert.verified);
+          } else if (filter === 'unacknowledged') {
+            filteredAlerts = alertsData.filter(alert => !alert.acknowledged);
+          }
+          
+          filteredAlerts.forEach(alert => {
+            const alertDate = new Date(alert.time);
+            const formattedTime = alertDate.toLocaleString();
+            
+            let statusClass = '';
+            if (alert.status === 'High') {
+              statusClass = 'text-red-500 bg-red-500/10';
+            } else if (alert.status === 'Medium') {
+              statusClass = 'text-amber-500 bg-amber-500/10';
+            } else {
+              statusClass = 'text-emerald-500 bg-emerald-500/10';
+            }
+            
+            const row = document.createElement('tr');
+            row.className = 'border-b border-slate-800 hover:bg-slate-800/50';
+            
+            row.innerHTML = `
+              <td class="py-3 px-4 font-fira">${alert.atmId}</td>
+              <td class="py-3 px-4">${formattedTime}</td>
+              <td class="py-3 px-4">${alert.threatType}</td>
+              <td class="py-3 px-4">${alert.location}</td>
+              <td class="py-3 px-4">
+                <span class="px-2 py-1 rounded text-xs ${statusClass}">${alert.status} Risk</span>
+              </td>
+              <td class="py-3 px-4">
+                <a href="#" class="text-sky-400 hover:text-sky-300 text-xs underline">${alert.evidence.substring(0, 10)}...</a>
+              </td>
+              <td class="py-3 px-4">
+                <div class="flex space-x-2">
+                  <button class="p-1 bg-slate-700 rounded hover:bg-slate-600" title="View Details">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </button>
+                  <button class="p-1 bg-slate-700 rounded hover:bg-slate-600" title="Mark Acknowledged">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            `;
+            
+            tableBody.appendChild(row);
+          });
+        };
+        
+        // Initial render
+        renderAlerts();
+        
+        // Handle filter change
+        document.getElementById('alert-filter').addEventListener('change', (e) => {
+          renderAlerts(e.target.value);
+        });
+        
+        // Create map points
+        const createMapPoints = () => {
+          const mapContainer = document.getElementById('map-container');
+          const pointCount = 35; // Total number of ATM points
+          
+          for (let i = 0; i < pointCount; i++) {
+            const point = document.createElement('div');
+            const x = Math.random() * 90 + 5; // 5% to 95% width
+            const y = Math.random() * 90 + 5; // 5% to 95% height
+            
+            let status = 'active';
+            // Make some points offline or threats
+            if (i < 3) {
+              status = 'threat';
+            } else if (i >= 3 && i < 8) {
+              status = 'offline';
+            }
+            
+            let color = 'bg-green-500';
+            if (status === 'offline') {
+              color = 'bg-amber-500';
+            } else if (status === 'threat') {
+              color = 'bg-red-500';
+              // Pulsing effect for threats
+              point.classList.add('animate-ping');
+            }
+            
+            point.className = `absolute h-2 w-2 rounded-full ${color}`;
+            point.style.left = `${x}%`;
+            point.style.top = `${y}%`;
+            point.setAttribute('title', `ATM-${1000 + i}`);
+            
+            mapContainer.appendChild(point);
+          }
+        };
+        
+        createMapPoints();
+      });
+    </script>
+  </body>
+</html>
